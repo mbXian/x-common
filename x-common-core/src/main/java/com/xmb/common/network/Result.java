@@ -5,76 +5,84 @@ import lombok.Data;
 @Data
 public class Result<T> {
 
-	private static final String SUCCES = "SUCCES";
-	private static final Integer SUCCES_CODE = 0;
-	private static final String FAIL = "FAIL";
-	private static final Integer FAIL_CODE = 500;
-	/**
-	 * 0：成功；非0：失败
-	 */
-	private int code;
+    private static final String SUCCES = "SUCCES";
+    private static final Integer SUCCES_CODE = 0;
+    private static final String FAIL = "FAIL";
+    private static final Integer FAIL_CODE = 500;
+    /**
+     * 0：成功；非0：失败
+     */
+    private int code;
 
-	/**
-	 * 结果描述，一般成功时为空
-	 */
-	private String msg;
+    /**
+     * 结果描述，一般成功时为空
+     */
+    private String msg;
 
-	/**
-	 * restful返回结果
-	 */
-	private T data;
+    /**
+     * restful返回结果
+     */
+    private T data;
 
-	private Result(Integer code, String msg, T data){
-		this.code = code;
-		this.msg = msg;
-		this.data = data;
-	}
+    /**
+     * 用户Id
+     */
+    private Long userId;
 
-	public Result(Integer code, String msg){
-		this.code = code;
-		this.msg = msg;
-	}
-	public Result( ){
+    private Result(Integer code, String msg, T data, Long userId) {
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
+        this.userId = userId;
+    }
 
-	}
+    public Result(Integer code, String msg, Long userId) {
+        this.code = code;
+        this.msg = msg;
+        this.userId = userId;
+    }
 
-	/******* 成功 *******/
-	public static Result ok() {
-		return new Result(SUCCES_CODE,SUCCES,null);
-	}
+    public Result() {
 
-	public static Result ok(String msg) {
-		return new Result(SUCCES_CODE,msg,null);
-	}
+    }
 
-	public static <T> Result ok(String msg, T data) {
-		return new Result(SUCCES_CODE,msg,data);
-	}
+    /******* 成功 *******/
+    public static Result ok(Long userId) {
+        return new Result(SUCCES_CODE, SUCCES, userId);
+    }
 
-	public static <T> Result ok(T data) {
-		return new Result(SUCCES_CODE,SUCCES,data);
-	}
+    public static Result ok(String msg, Long userId) {
+        return new Result(SUCCES_CODE, msg, userId);
+    }
 
-	/******* 失败 *******/
-	public static Result fail() {
-		return new Result(FAIL_CODE,FAIL,null);
-	}
+    public static <T> Result ok(String msg, T data, Long userId) {
+        return new Result(SUCCES_CODE, msg, data, userId);
+    }
 
-	public static Result fail(Integer code, String msg) {
-		return new Result(code,msg,null);
-	}
+    public static <T> Result ok(T data, Long userId) {
+        return new Result(SUCCES_CODE, SUCCES, data, userId);
+    }
 
-	public static Result fail(String msg) {
-		return new Result(FAIL_CODE,msg,null);
-	}
+    /******* 失败 *******/
+    public static Result fail(Long userId) {
+        return new Result(FAIL_CODE, FAIL, userId);
+    }
 
-	public static <T> Result fail(String msg, T data) {
-		return new Result(FAIL_CODE,msg,data);
-	}
+    public static Result fail(Integer code, String msg, Long userId) {
+        return new Result(code, msg, userId);
+    }
 
-	public static <T> Result fail(T data) {
-		return new Result(FAIL_CODE,FAIL,data);
-	}
-	
+    public static Result fail(String msg, Long userId) {
+        return new Result(FAIL_CODE, msg, userId);
+    }
+
+    public static <T> Result fail(String msg, T data, Long userId) {
+        return new Result(FAIL_CODE, msg, data, userId);
+    }
+
+    public static <T> Result fail(T data, Long userId) {
+        return new Result(FAIL_CODE, FAIL, data, userId);
+    }
+
 
 }
