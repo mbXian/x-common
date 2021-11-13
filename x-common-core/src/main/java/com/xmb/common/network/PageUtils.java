@@ -9,6 +9,8 @@
 package com.xmb.common.network;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,6 +19,7 @@ import java.util.List;
  *
  * @author Mark sunlightcs@gmail.com
  */
+@Data
 public class PageUtils<T> implements Serializable {
 	private static final long serialVersionUID = 1L;
 	/**
@@ -39,7 +42,7 @@ public class PageUtils<T> implements Serializable {
 	 * 列表数据
 	 */
 	private List<T> list;
-	
+
 	/**
 	 * 分页
 	 * @param list        列表数据
@@ -66,44 +69,29 @@ public class PageUtils<T> implements Serializable {
 		this.totalPage = (int)page.getPages();
 	}
 
-	public int getTotalCount() {
-		return totalCount;
+	/**
+	 * 计算limit的开始值
+	 * @param page
+	 * @param size
+	 * @return
+	 */
+	public static Integer getLimitStart(Integer page, Integer size) {
+		if (page == null || size == null) {
+			return 0;
+		}
+		return (page - 1) * size;
 	}
 
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
+	/**
+	 * 计算limit的结束值
+	 * @param size
+	 * @return
+	 */
+	public static Integer getLimitEnd(Integer size) {
+		if (size == null) {
+			return 10;
+		}
+		return size;
 	}
 
-	public int getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
-
-	public int getTotalPage() {
-		return totalPage;
-	}
-
-	public void setTotalPage(int totalPage) {
-		this.totalPage = totalPage;
-	}
-
-	public int getCurrPage() {
-		return currPage;
-	}
-
-	public void setCurrPage(int currPage) {
-		this.currPage = currPage;
-	}
-
-	public List<T> getList() {
-		return list;
-	}
-
-	public void setList(List<T> list) {
-		this.list = list;
-	}
-	
 }
