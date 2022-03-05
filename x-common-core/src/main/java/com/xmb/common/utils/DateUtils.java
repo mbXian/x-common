@@ -4,7 +4,9 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 日期处理
@@ -103,4 +105,26 @@ public class DateUtils {
         }
         return date;
     }
+
+    /**
+     * 根据时间范围获得月份集
+     * @return
+     */
+    public static List<String> getRangeSet(Date beginDate, Date endDate){
+        /*      Date1.after(Date2),当Date1大于Date2时，返回TRUE，当小于等于时，返回false；
+          Date1.before(Date2)，当Date1小于Date2时，返回TRUE，当大于等于时，返回false；
+          如果业务数据存在相等的时候，而且相等时也需要做相应的业务判断或处理时，你需要使用：！Date1.after(Date2);*/
+        List<String> rangeSet =null;
+        SimpleDateFormat sdf = null;
+        rangeSet = new java.util.ArrayList<String>();
+        sdf = new SimpleDateFormat("yyyy-MM");
+        Calendar dd = Calendar.getInstance();//定义日期实例
+        dd.setTime(beginDate);//设置日期起始时间
+        while(!dd.getTime().after(endDate)){//判断是否到结束日期
+            rangeSet.add(sdf.format(dd.getTime()));
+            dd.add(Calendar.MONTH, 1);//进行当前日期月份加1
+        }
+        return rangeSet;
+    }
+
 }
