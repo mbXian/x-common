@@ -6,7 +6,7 @@
 
     <groupId>com.xmb.common</groupId>
     <artifactId>x-common</artifactId>
-    <version>1.0.6-SNAPSHOT</version>
+    <version>1.0.7-SNAPSHOT</version>
 
     <modules>
         <module>x-common-core</module>
@@ -27,10 +27,6 @@
         <!-- Swagger -->
         <springfox-swagger-ui.version>2.9.2</springfox-swagger-ui.version>
         <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
-        <!-- 数据库 -->
-        <druid.version>1.0.28</druid.version>
-        <!--   mybatis plus     -->
-        <mybatis-plus-boot-starter.version>3.2.0</mybatis-plus-boot-starter.version>
     </properties>
 
     <dependencies>
@@ -72,19 +68,6 @@
             <version>${springfox-swagger2.version}</version>
         </dependency>
 
-        <!-- 数据库 -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>${druid.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
         <!-- Reids -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -96,13 +79,6 @@
             <groupId>org.redisson</groupId>
             <artifactId>redisson</artifactId>
             <version>3.3.2</version>
-        </dependency>
-
-        <!--   mybatis plus     -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>${mybatis-plus-boot-starter.version}</version>
         </dependency>
 
     </dependencies>
