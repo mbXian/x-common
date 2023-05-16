@@ -1,6 +1,7 @@
 package com.xmb.common.utils;
 
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -136,5 +137,27 @@ public class DateUtils {
         }
         return rangeSet;
     }
+
+    /**
+     * 转换DayOfWeek为中文
+     */
+    public static String dayOfWeek2CN(DayOfWeek dayOfWeek) {
+        if (DayOfWeek.SUNDAY.compareTo(dayOfWeek) == 0) {
+            return "周日";
+        } else if (DayOfWeek.MONDAY.compareTo(dayOfWeek) == 0) {
+            return "周一";
+        } else if (DayOfWeek.TUESDAY.compareTo(dayOfWeek) == 0) {
+            return "周二";
+        } else if (DayOfWeek.WEDNESDAY.compareTo(dayOfWeek) == 0) {
+            return "周三";
+        } else if (DayOfWeek.THURSDAY.compareTo(dayOfWeek) == 0) {
+            return "周四";
+        } else if (DayOfWeek.FRIDAY.compareTo(dayOfWeek) == 0) {
+            return "周五";
+        } else if (DayOfWeek.SATURDAY.compareTo(dayOfWeek) == 0) {
+            return "周六";
+        }
+        return null;
+     }
 
 }
